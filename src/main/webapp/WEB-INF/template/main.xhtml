@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Facelet Title for #{nameBean.name}</title>
+        <link rel="stylesheet" href="//oss.maxcdn.com/bootstrap/3.3.0/css/bootstrap.min.css " />
+        <link rel="stylesheet" href="//oss.maxcdn.com/bootflat/2.0.0/css/bootflat.min.css" />
+    </h:head>
+    <h:body>
+
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <h:link outcome="index" class="navbar-brand" value="Home" />
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <h:button outcome="login" class="btn btn-default navbar-btn" value="Login" rendered="#{!sessionBean.loggedIn}" />
+                            <li><h:link outcome="fun" value="Fun" rendered="#{sessionBean.loggedIn}" /></li>                            
+                            <p class="navbar-text">Signed in as <h:outputText value="#{sessionBean.currentUser}" /></p>                            
+                            <h:form rendered="#{sessionBean.loggedIn}">
+                                <h:commandButton action="#{sessionBean.logout()}" value="Logout" class="btn btn-default navbar-btn"  />
+                            </h:form>
+                        </li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>        
+
+        <div class="container">
+            <ui:insert name="content" />
+        </div>
+        <script src="//oss.maxcdn.com/jquery/2.1.1/jquery.min.js"></script>
+        <script src="//oss.maxcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    </h:body>
+</html>
